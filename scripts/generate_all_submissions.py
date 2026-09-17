@@ -97,32 +97,28 @@ def generate_semantic_submission(task_name, model, processor):
         mask_rgb = np.zeros((h, w, 3), dtype=np.uint8)
 
         if task_name == "cp4_curb":
-            # Road vs sidewalk. Map road (0) and sidewalk (1).
-            # If model predicts car/bus/truck/motorcycle, under them is road
-            # If terrain/building close to road/sidewalk, map accordingly
+            # Curb: road vs sidewalk functional boundary
             for y in range(h):
                 for x in range(w):
                     p = preds[y, x]
                     if p == 1:
                         mask_rgb[y, x] = name2rgb["sidewalk"]
-                    elif p in (0, 13, 14, 15, 17, 18, 9): # road or vehicles/terrain on road
-                        mask_rgb[y, x] = name2rgb["road"]
                     else:
-                        # Nearest functional surface in lower half of image is road/sidewalk
-                        if y > h * 0.4:
-                            mask_rgb[y, x] = name2rgb["road"]
+                        mask_rgb[y, x] = name2rgb["road"]
 
         elif task_name == "cp3_thin":
             # Thin structures: pole (5), traffic sign (7), sky (10), road (0)
-            valid_ids = set(trainid_map.values())
             for y in range(h):
                 for x in range(w):
                     p = preds[y, x]
-                    if p in valid_ids:
-                        cname = id2name[p]
-                        mask_rgb[y, x] = name2rgb[cname]
-                    elif p in (6,): # traffic light -> traffic sign
+                    if p == 5:
+                        mask_rgb[y, x] = name2rgb["pole"]
+                    elif p in (6, 7):
                         mask_rgb[y, x] = name2rgb["traffic sign"]
+                    elif p == 0 or p in (1, 13, 14, 15, 16, 17, 18):
+                        mask_rgb[y, x] = name2rgb["road"]
+                    else:
+                        mask_rgb[y, x] = name2rgb["sky"] if y < h * 0.55 else name2rgb["road"]
 
         elif task_name == "cp6_coverage":
             # Coverage: label every pixel!
