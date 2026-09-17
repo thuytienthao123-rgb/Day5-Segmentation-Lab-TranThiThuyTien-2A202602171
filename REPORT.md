@@ -1,12 +1,8 @@
-# Báo cáo Day 5 — điền trực tiếp trong fork của bạn
-
-**Cách dùng:** Thay mọi dấu `…` bằng bài làm thật của bạn trước khi nộp link fork trên VLearn. Giữ nguyên bốn mục và bảng để coach đọc nhanh. Viết ngắn, cụ thể theo ảnh/vùng; không cần thuật ngữ chuyên sâu. Ví dụ trong [hướng dẫn mẫu](reports/REPORT_TEMPLATE.md) chỉ giúp hiểu cách điền, không phải câu trả lời để chép lại.
+# Báo cáo Day 5 
 
 - Mã học viên theo lớp: 2A202602171
 - Ngày / CVAT local: 17/09/2026 / CVAT local (http://localhost:8080)
 - Công cụ đã dùng: Brush, Polygon, SegFormer Cityscapes AI pre-labeling tool
-
-Mã học viên là mã lớp cấp; không cần ghi họ tên trong report nếu kênh VLearn đã nhận diện bạn. Chỉ ghi công cụ thật sự đã dùng; không có SAM vẫn làm bài bình thường.
 
 ## 1. Bài đã nộp
 
