@@ -66,7 +66,7 @@ def generate_semantic_submission(task_name, model, processor):
     # # label:color_rgb:parts:actions
     # background:0,0,0::
     # road:128,64,128::
-    labelmap_lines = ["# label:color_rgb:parts:actions", "background:0,0,0::"]
+    labelmap_lines = ["# label:color_rgb:parts:actions"]
     for item in cvat_labels:
         cname = item["name"]
         rgb = name2rgb[cname]
